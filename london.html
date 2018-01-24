@@ -1,0 +1,139 @@
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width" />
+</head>
+<body>
+<div class="header">Home</div>
+<h3>London Calling</h3>
+
+<div class="container">
+
+  <div class="page-card">
+    <figure class="card-content">
+      <img src="./static/images/IMG_5266-edit.jpg" class="formatted" alt="Portsmouth to London" />
+      <figcaption>London to Portsmouth</figcaption>
+    </figure>
+  </div>
+
+  <div class="page-card">
+    <figure class="card-content">
+      <img src="./static/images/IMG_5221.JPG" class="formatted" alt="Buckingham Palace Gates" />
+      <figcaption>Buckingham Palace Gates</figcaption>
+    </figure>
+  </div>
+
+  <div class="page-card">
+    <figure class="card-content">
+      <img src="./static/images/IMG_5251.JPG" class="formatted" alt="The Beatles at Abbey Road"/>
+      <figcaption>The Beatles at Abbey Road</figcaption>
+    </figure>
+  </div>
+
+</div>
+<!--Django template usage:
+{% for index in indices %}
+<div class="page-card">
+  <figure class="card-content">
+    <img src="./static/images/IMG_{{index}}.jpg" class="formatted" alt="{{ index.title }}" />
+    <figcaption>{{ index.title }}</figcaption>
+  </figure>
+</div>
+{% endfor %}
+
+indices = range(5200,5400)
+create a database model for the images.  fields are index and title.
+-->
+
+<style type="text/css">
+@font-face{
+  font-family: 'respective';
+  src: url('./static/fonts/respective/Respective.ttf');
+}
+.page-card{
+  display: inline-block;
+  font-weight: 300;
+}
+h3{
+  text-align: center;
+  padding-top: .9em;
+  font-family: respective;
+  font-style: italic;
+  font-size: 200%;
+  font-weight: 400;
+}
+body{
+  background-color: rgba(220, 220, 220, 1);
+  font-family: sans-serif;
+}
+.header{
+  background-color: rgba(68, 110, 175, 0.9);
+  font-weight: 300;
+  position: fixed;
+  min-width: 100%;
+  height: 2em;
+  padding-left: .3em;
+  left: 0em;
+  top: 0em;
+  z-index: 1000;
+}
+figure.card-content{
+  text-align: center;
+}
+
+/*Use 3 layouts for 3 standard screen widths (normally people will use a max screen setting)
+ *1. smartphone vertical
+   *smartphone rotated (use same layout as tablet vertical)
+ *2. tablet vertical
+   *tablet rotated (use same layout as desktop)
+ *3. desktop
+*/
+
+@media only screen and (max-width: 60em),
+  only screen and (max-device-width: 60em){
+  .page-card{
+    margin-right: -50px;
+  }
+  div.container{
+    padding-left: 10px;
+  }
+}
+
+
+@media only screen and (max-width: 32em), /*512px*/
+  only screen and (max-device-width: 32em){
+  figcaption{
+    padding-top: 2em;
+  }
+  div.container{
+    padding-left: 0em;
+  }
+  .page-card{
+    background-color: rgba(182, 182, 182, 1);
+    position: relative;
+    margin-left: -3%; /*relative positioning required here to take the
+    element out of its normal static flow. */
+    width: 105%;
+    height: 22em;
+  }
+  .page-card:nth-child(2n+1){
+    background-color: rgba(200, 200, 200, 1);
+  }
+  figure.card-content{
+    margin: 2em auto 0em auto;
+    font-size: 0.85em;
+    color: rgba(0, 0, 0, 0.85);
+    text-align: center;
+  }
+
+}
+
+img.formatted{
+  width: 18em;
+  height: 18em;
+}
+
+</style>
+
+</body>
+</html>
